@@ -1,6 +1,7 @@
 package com.shetu.tutorialcrud.service;
 
 import com.shetu.tutorialcrud.model.Tutorial;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -14,4 +15,5 @@ public interface TutorialService {
     ResponseEntity<Tutorial> updateTutorial(String id, Tutorial tutorial);
     ResponseEntity<HttpStatus> deleteTutorial(String id);
     ResponseEntity<HttpStatus> deleteAllTutorials();
+    ResponseEntity<Resource> downloadExcelFileOfAllTutorials();
 }

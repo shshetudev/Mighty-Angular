@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Tutorial} from '../model/tutorial';
 
 const baseUrl = 'http://127.0.0.1:8080/api/tutorials';
+const excelFileDownloadUrl = baseUrl + '/excel-download';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class TutorialService {
     return this.http.get<Tutorial>(`${baseUrl}/${id}`);
   }
 
- findByTitle(title): Observable<Tutorial[]> {
+  findByTitle(title): Observable<Tutorial[]> {
     return this.http.get<Tutorial[]>(`${baseUrl}?title=${title}`);
- }
+  }
 
   // Add Operation
   create(data): Observable<Tutorial> {
@@ -43,6 +44,15 @@ export class TutorialService {
 
   deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
+  }
+
+  // todo: check api -> /api/excel/download
+  // todo: change the Observable type
+  // Download excel file
+  downloadExcelFile(): Observable<any> {
+    // return this.http.get(excelFileDownloadUrl, {headers});
+    // return this.http.get(excelFileDownloadUrl,{responseType:"blob"});
+    return this.http.get(excelFileDownloadUrl, {responseType: "blob"});
   }
 
 }

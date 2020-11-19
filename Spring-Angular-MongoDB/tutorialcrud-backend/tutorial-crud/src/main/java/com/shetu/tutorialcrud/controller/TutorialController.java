@@ -18,10 +18,10 @@ import java.util.List;
 public class TutorialController {
     @Autowired
     private TutorialService tutorialService;
-//    @Autowired
-//    public TutorialController(TutorialService tutorialService) {
-//        this.tutorialService = tutorialService;
-//    }
+    @Autowired
+    public TutorialController(TutorialService tutorialService) {
+        this.tutorialService = tutorialService;
+    }
 
     // *************  Find Operation Starts *******************
     @GetMapping("/tutorials")

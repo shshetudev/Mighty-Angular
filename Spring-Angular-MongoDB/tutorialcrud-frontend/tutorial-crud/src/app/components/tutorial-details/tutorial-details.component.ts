@@ -54,9 +54,9 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   updateTutorial(): void {
-    this.tutorialService.update(this.currentTutorial.id,this.currentTutorial)
+    this.tutorialService.update(this.currentTutorial.id, this.currentTutorial)
       .subscribe(
-        response =>{
+        response => {
           console.log(response);
           this.message = 'The tutorial was updated successfully!';
         },

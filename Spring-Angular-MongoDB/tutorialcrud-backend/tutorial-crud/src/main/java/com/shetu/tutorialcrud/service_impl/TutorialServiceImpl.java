@@ -2,10 +2,15 @@ package com.shetu.tutorialcrud.service_impl;
 
 import com.shetu.tutorialcrud.model.Tutorial;
 import com.shetu.tutorialcrud.repository.TutorialsRepository;
+import com.shetu.tutorialcrud.service.ExcelService;
 import com.shetu.tutorialcrud.service.TutorialService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +21,10 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class TutorialServiceImpl implements TutorialService {
-    @Autowired(required = true)
+    @Autowired
     private TutorialsRepository tutorialRepository;
+    @Autowired
+    private ExcelService fileService;
 //    @Autowired
 //    public TutorialServiceImpl(TutorialRepository tutorialRepository) {
 //        this.tutorialRepository = tutorialRepository;
@@ -120,5 +127,16 @@ public class TutorialServiceImpl implements TutorialService {
             e.printStackTrace();
         }
         return responseEntity;
+    }
+
+    @Override
+    public ResponseEntity<Resource> downloadExcelFileOfAllTutorials() {
+//        String filename = "tutorials.xlsx";
+        List<Tutorial> tutorials = tutorialRepository.findAll();
+        InputStreamResource file = new InputStreamResource(fileService.load(tutorials));
+        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename="+filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
     }
 }

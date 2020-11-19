@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
+import { FileServiceComponent } from './components/file-service/file-service.component';
 // todo: https://bezkoder.com/angular-10-spring-boot-mongodb/
 // todo: Know why we need to add the modules to @NGModule
 // todo: Check properly
@@ -18,7 +19,8 @@ import {AppRoutingModule} from './app-routing.module';
     AppComponent,
     AddTutorialComponent,
     TutorialDetailsComponent,
-    TutorialListComponent
+    TutorialListComponent,
+    FileServiceComponent
   ],
   imports: [
     BrowserModule,
