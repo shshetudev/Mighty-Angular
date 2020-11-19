@@ -1,0 +1,75 @@
+<!--todo: Know why we used list row-->
+<div class="list row">
+  <!--Search by title part-->
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by title"
+        [(ngModel)]="title"
+      />
+    </div>
+
+    <div class="input-group-append">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="searchTitle()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+
+  <!--Tutorials List Loading Part-->
+  <!--  todo: clarify this part-->
+  <div class="col-md-6">
+    <h4>Tutorials List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let tutorial of tutorials; let i = index"
+        [class.active]=" i === currentIndex"
+        (click)="setActiveTutorial(tutorial,i)"
+      >
+        {{tutorial.title}}
+      </li>
+    </ul>
+    <!--Button part: Remove All-->
+    <button class="m-3 btn btn-sm btn-danger"
+            (click)="removeAllTutorials()">
+      Remove All
+    </button>
+  </div>
+  <!--Single Tutorial Loading part on the RHS Starts-->
+  <div class="col-md-6">
+    <!--If current Tutorial exists : starts-->
+    <div *ngIf="currentTutorial">
+      <h4>Tutorial</h4>
+      <div>
+        <label><strong>Title:</strong></label>
+        {{currentTutorial.title}}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{currentTutorial.description}}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{currentTutorial.published ? "Published" : "Pending"}}
+      </div>
+    </div>
+    <!--If current Tutorial exists : ends-->
+    <!--Edit Button-->
+    <a class="badge badge-warning"
+       routerLink="/tutorials/{{currentTutorial?.id}}">
+      Edit
+    </a>
+  </div>
+  <!--Single Tutorial Loading part on the RHS Ends-->
+  <div *ngIf="!currentTutorial">
+    <br/>
+    <p>Please click on a Tutorial...</p>
+  </div>
+</div>

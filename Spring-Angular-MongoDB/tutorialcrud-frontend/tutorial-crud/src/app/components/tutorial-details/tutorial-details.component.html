@@ -1,0 +1,94 @@
+<!--Main div starts-->
+<div style="width: 400px; margin: auto;">
+  <!--If Current Tutorial is not null div starts-->
+  <div *ngIf="currentTutorial" class="edit-form">
+    <h4>Tutorial</h4>
+    <!--Edit Form starts-->
+    <form>
+      <!--Title div starts-->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          [(ngModel)]="currentTutorial.title"
+        />
+      </div>
+      <!--Title div ends-->
+
+      <!--Description div starts-->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          [(ngModel)]="currentTutorial.description"
+        />
+      </div>
+      <!--Description div ends-->
+
+      <!--Status div starts-->
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{currentTutorial.published ? "Published": "Pending"}}
+      </div>
+      <!--Status div ends-->
+    </form>
+    <!--Edit Form ends-->
+
+    <!--Buttons start-->
+    <!--UnPublish Button starts-->
+    <button
+    class="badge badge-primary mr-2"
+    *ngIf="currentTutorial.published"
+    (click)="updatePublished(false)"
+    >
+    UnPublish
+    </button>
+    <!--UnPublish Button ends-->
+
+    <!--Publish Button starts-->
+    <button
+    *ngIf="!currentTutorial.published"
+    class="badge badge-primary mr-2"
+    (click)="updatePublished(true)"
+    >
+    Publish
+    </button>
+    <!--Publish Button ends-->
+
+    <!--Delete Button starts-->
+    <button
+    class="badge badge-danger mr-2"
+    (click)="deleteTutorial()"
+    >
+      Delete
+    </button>
+    <!--Delete Button ends-->
+
+    <!--Update Button starts-->
+    <button
+    type="submit"
+    class="badge badge-success"
+    (click)="updateTutorial()"
+    >
+    Update
+    </button>
+    <p>{{message}}</p>
+    <!--Update Button ends-->
+    <!--Buttons end-->
+  </div>
+  <!--If Current Tutorial is not null div ends-->
+
+  <!--If Current Tutorial is null block starts-->
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+  </div>
+  <!--If Current Tutorial is null block ends-->
+</div>
+<!--Main div ends-->

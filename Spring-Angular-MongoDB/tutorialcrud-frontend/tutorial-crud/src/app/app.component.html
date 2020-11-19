@@ -1,0 +1,26 @@
+<!--Main div starts-->
+<!--We need Nav bar to be expanded,background darked-->
+<div>
+  <!--Nav bar starts-->
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">bexKoder</a>
+    <!--Navbar div starts-->
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="tutorials" class="nav-link">Tutorials</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add" class="nav-link">Add</a>
+      </li>
+    </div>
+    <!--Navbar div ends-->
+  </nav>
+  <!--Nav bar ends-->
+
+  <!--Router outlet div starts-->
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+  <!--Router outlet div ends-->
+</div>
+<!--Main div ends-->
